@@ -10,7 +10,7 @@ It does pretty much everything you need to remove the background from images in 
 
 `rmbg` is also cross-compatible with all versions of Linux.
 
-** External dependencies: **
+**External dependencies:**
 
 - `bash`
 - `python3`
