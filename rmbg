@@ -1,0 +1,63 @@
+#!/bin/bash
+
+CONFIG_DIR="${HOME}/.rmbg"
+INPUT_DIR="${CONFIG_DIR}/input"
+OUTPUT_DIR="${CONFIG_DIR}/output"
+INPUT_FILES="$(find "${@}" -type f -print0 | xargs -0I file realpath file)"
+export TERM=xterm-256color
+
+div() {
+  printf '%.s─' $(seq 1 "$(tput cols)")
+}
+
+div
+echo "[$(date)]: STARTED."
+div
+
+mkdir -p "$CONFIG_DIR" "$INPUT_DIR" "$OUTPUT_DIR"
+if echo "$PWD" | grep -q rmbg; then
+  if ! diff requirements.txt "${CONFIG_DIR}/requirements.txt" >/dev/null 2>&1; then
+    cp -v requirements.txt "$CONFIG_DIR"/
+    div
+  fi
+  if ! diff rmbg /usr/local/bin/rmbg >/dev/null 2>&1; then
+    sudo ln -svf "${PWD}/rmbg" /usr/local/bin/rmbg
+    div
+  fi
+fi
+
+cd "$CONFIG_DIR" || exit 1
+
+if ! command -v curl >/dev/null 2>&1; then
+  echo 'curl must be installed.'
+  exit 1
+fi
+if ! python3 -c 'import pip' >/dev/null 2>&1; then
+  curl -skL 'https://bootstrap.pypa.io/get-pip.py' | python3 2>&1
+  div
+fi
+if ! python3 -c 'import virtualenv' >/dev/null 2>&1; then
+  python3 -m pip install virtualenv 2>&1
+  div
+fi
+
+# create virtualenv:
+if [[ ! -d .venv ]]; then
+  python3 -m virtualenv --clear -p python3 .venv 2>&1
+  div
+  .venv/bin/pip install --upgrade pip 2>&1
+  div
+  .venv/bin/pip install -r requirements.txt 2>&1
+  div
+fi
+
+echo "${INPUT_FILES}" | while read i; do
+  OLDFILE="$(dirname "$i")/$(basename "$i")"
+  NEWFILE="$(dirname "$i")/nobg_$(basename "$i")"
+  echo "[$(date)]: ${OLDFILE} >> ${NEWFILE}"
+  "${CONFIG_DIR}/.venv/bin/rembg" i "$OLDFILE" "$NEWFILE" 2>&1
+  div
+done
+
+echo "[$(date)]: COMPLETE."
+div
