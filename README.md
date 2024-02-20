@@ -1,6 +1,6 @@
-# GhostBG
-
 ![GhostBG](./icon.png?raw=true)
+
+# GhostBG
 
 `GhostBG` a.k.a. `rmbg` is just a Bash wrapper and MacOS app for the python `rembg` command line utility.
 
