@@ -4,6 +4,8 @@
 
 It does pretty much everything you need to remove the background from images in batches.
 
+(installs all dependencies and run in a virtualenv in `~/.rmbg`)
+
 ## Installation:
 
 ```
