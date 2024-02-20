@@ -2,7 +2,7 @@
 
 # GhostBG
 
-`GhostBG` a.k.a. `rmbg` is just a Bash wrapper and MacOS app for the python `rembg` command line utility.
+`GhostBG` a.k.a. `rmbg` is just a Bash wrapper and MacOS app for the Python3 `rembg` command line utility.
 
 It does pretty much everything you need to remove the background from images in batches.
 
