@@ -46,7 +46,7 @@ You can double-click GhostBG from your Applications, or drag it to your dock and
 
 It will open a Finder prompt for you to select the images you wish to edit.
 
-You can also use it as a droplet by simply selecting the images from Finder and dragging them onto the GhostBG icon to start processing them immediately.
+You can also use it as a droplet by simply selecting the images from Finder and dragging them onto the GhostBG application to start processing them immediately.
 
 ## Uninstall:
 
