@@ -4,7 +4,15 @@
 
 It does pretty much everything you need to remove the background from images in batches.
 
-(installs all dependencies and run in a virtualenv in `~/.rmbg`)
+(installs all dependencies and runs in a virtualenv inside `~/.rmbg`)
+
+`rmbg` is also cross-compatible with all versions of Linux.
+
+** External dependencies: **
+
+- `bash`
+- `python3`
+- `curl` (if `pip` is not installed)
 
 ## Installation:
 

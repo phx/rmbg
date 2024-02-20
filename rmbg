@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 CONFIG_DIR="${HOME}/.rmbg"
 INPUT_DIR="${CONFIG_DIR}/input"
@@ -28,11 +28,15 @@ fi
 
 cd "$CONFIG_DIR" || exit 1
 
-if ! command -v curl >/dev/null 2>&1; then
-  echo 'curl must be installed.'
+if ! command -v python3 >/dev/null 2>&1; then
+  echo 'python3 must be installed.'
   exit 1
 fi
 if ! python3 -c 'import pip' >/dev/null 2>&1; then
+  if ! command -v curl >/dev/null 2>&1; then
+    echo 'curl must be installed.'
+    exit 1
+  fi
   curl -skL 'https://bootstrap.pypa.io/get-pip.py' | python3 2>&1
   div
 fi
