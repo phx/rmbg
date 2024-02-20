@@ -1,0 +1,8 @@
+logo.png
+venv
+venv/*
+.venv
+.venv/*
+input/*
+output/*
+
